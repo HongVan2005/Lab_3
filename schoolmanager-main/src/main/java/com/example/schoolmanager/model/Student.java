@@ -1,28 +1,44 @@
 package com.example.schoolmanager.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "students")
+@Schema(description = "Thông tin sinh viên")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID sinh viên", example = "1")
     private Integer id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Tên sinh viên không được để trống")
+    @Schema(description = "Tên sinh viên", example = "Nguyễn Văn A")
     private String name;
 
     @Column(nullable = false, unique = true)
+    @Email(message = "Email không hợp lệ")
+    @NotBlank(message = "Email không được để trống")
+    @Schema(description = "Email sinh viên", example = "a@gmail.com")
     private String email;
 
+    @Min(value = 1, message = "Tuổi phải lớn hơn 0")
+    @Max(value = 120, message = "Tuổi không hợp lệ")
+    @Schema(description = "Tuổi sinh viên", example = "20")
     private Integer age;
 
+    @Schema(description = "Giới tính", example = "Nam")
     private String gender;
 
     @Column(columnDefinition = "bit default 1")
