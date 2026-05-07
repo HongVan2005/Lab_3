@@ -45,8 +45,8 @@ public class Student {
     @Schema(description = "Giới tính", example = "Nam")
     private String gender;
 
-    @Column(columnDefinition = "bit default 1")
-    private Boolean canDelete = true;  // true = được phép xóa, false = không được xóa
+   @Column(nullable = false)
+private Boolean canDelete = true;
 
     // ===== Constructor =====
     public Student() {}
