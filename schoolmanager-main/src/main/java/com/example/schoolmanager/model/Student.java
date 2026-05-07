@@ -19,7 +19,7 @@ import jakarta.validation.constraints.Pattern;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Schema(description = "ID sinh viên", example = "1")
     private Integer id;
 
