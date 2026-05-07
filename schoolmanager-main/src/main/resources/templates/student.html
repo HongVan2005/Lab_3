@@ -65,7 +65,6 @@
                                 <option value="">-- Chọn --</option>
                                 <option value="Nam">Nam</option>
                                 <option value="Nữ">Nữ</option>
-                                <option value="Khác">Khác</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -154,6 +153,17 @@
             .catch(showError);
     }
 
+    function normalizeGender(value) {
+        if (value === 1 || value === '1') return 'Nam';
+        if (value === 2 || value === '2') return 'Nữ';
+        if (typeof value === 'string') {
+            const normalized = value.trim().toLowerCase();
+            if (normalized === 'nam') return 'Nam';
+            if (normalized === 'nữ' || normalized === 'nu') return 'Nữ';
+        }
+        return value || '';
+    }
+
     function renderTable(data) {
         const table = document.getElementById("studentTable");
         table.innerHTML = "";
@@ -175,7 +185,7 @@
                     <td>${s.name}</td>
                     <td>${s.email}</td>
                     <td class="text-center">${s.age}</td>
-                    <td class="text-center">${s.gender}</td>
+                    <td class="text-center">${normalizeGender(s.gender)}</td>
                     <td class="text-center">${s.canDelete ? '✅ Có' : '❌ Không'}</td>
                     <td class="text-center">
                         <button class="btn btn-warning btn-sm"
@@ -258,7 +268,7 @@
                 document.getElementById("name").value = s.name;
                 document.getElementById("email").value = s.email;
                 document.getElementById("age").value = s.age;
-                document.getElementById("gender").value = s.gender;
+                document.getElementById("gender").value = normalizeGender(s.gender);
             })
             .catch(showError);
     }
@@ -296,7 +306,7 @@
                                 <strong>${student.name}</strong>
                                 <span class="text-muted text-sm">#${student.id}</span>
                             </div>
-                            <small class="text-muted">${student.email} | Tuổi: ${student.age} | Giới tính: ${student.gender}</small>
+                            <small class="text-muted">${student.email} | Tuổi: ${student.age} | Giới tính: ${normalizeGender(student.gender)}</small>
                         `;
                         item.onclick = () => selectStudent(student);
                         resultsDiv.appendChild(item);
@@ -325,7 +335,7 @@
             fetch(`${API}`)
                 .then(res => res.json())
                 .then(data => {
-                    const filtered = data.filter(s => s.gender.toLowerCase().includes(query.toLowerCase()));
+                    const filtered = data.filter(s => normalizeGender(s.gender).toLowerCase().includes(query.toLowerCase()));
                     displaySearchResults(filtered, resultsDiv);
                 })
                 .catch(showError);
@@ -361,7 +371,7 @@
                     <strong>${student.name}</strong>
                     <span class="text-muted text-sm">#${student.id}</span>
                 </div>
-                <small class="text-muted">${student.email} | Tuổi: ${student.age} | Giới tính: ${student.gender}</small>
+                <small class="text-muted">${student.email} | Tuổi: ${student.age} | Giới tính: ${normalizeGender(student.gender)}</small>
             `;
             item.onclick = () => selectStudent(student);
             resultsDiv.appendChild(item);
@@ -374,7 +384,7 @@
         document.getElementById("name").value = student.name;
         document.getElementById("email").value = student.email;
         document.getElementById("age").value = student.age;
-        document.getElementById("gender").value = student.gender;
+        document.getElementById("gender").value = normalizeGender(student.gender);
         document.getElementById("canDelete").value = student.canDelete ? "true" : "false";
         document.getElementById("searchInput").value = "";
         document.getElementById("searchResults").style.display = "none";

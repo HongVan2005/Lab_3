@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "students")
@@ -38,6 +39,9 @@ public class Student {
     @Schema(description = "Tuổi sinh viên", example = "20")
     private Integer age;
 
+    @Column(nullable = false)
+    @NotBlank(message = "Giới tính không được để trống")
+    @Pattern(regexp = "^(Nam|Nữ)$", message = "Giới tính phải là Nam hoặc Nữ")
     @Schema(description = "Giới tính", example = "Nam")
     private String gender;
 

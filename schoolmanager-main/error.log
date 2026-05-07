@@ -1,0 +1,24 @@
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.example:schoolmanager >----------------------
+[INFO] Building schoolmanager 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ schoolmanager ---
+[INFO] Deleting D:\LapTrinhWeb2\Lab_3\schoolmanager-main\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ schoolmanager ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ schoolmanager ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 7 source files with javac [debug parameters release 21] to target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.005 s
+[INFO] Finished at: 2026-05-06T23:46:20+07:00
+[INFO] ------------------------------------------------------------------------
