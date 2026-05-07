@@ -1,12 +1,7 @@
 package com.example.schoolmanager.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -45,11 +40,13 @@ public class Student {
     @Schema(description = "Giới tính", example = "Nam")
     private String gender;
 
-   @Column(nullable = false)
-private Boolean canDelete = true;
+    @Column(nullable = false)
+    private Boolean canDelete = true;
 
     // ===== Constructor =====
-    public Student() {}
+
+    public Student() {
+    }
 
     public Student(Integer id, String name, String email, Integer age, String gender) {
         this.id = id;
@@ -61,6 +58,7 @@ private Boolean canDelete = true;
     }
 
     // ===== Getter & Setter =====
+
     public Integer getId() {
         return id;
     }
@@ -80,7 +78,7 @@ private Boolean canDelete = true;
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -88,7 +86,7 @@ private Boolean canDelete = true;
     public Integer getAge() {
         return age;
     }
-    
+
     public void setAge(Integer age) {
         this.age = age;
     }
@@ -96,7 +94,7 @@ private Boolean canDelete = true;
     public String getGender() {
         return gender;
     }
-    
+
     public void setGender(String gender) {
         this.gender = gender;
     }
